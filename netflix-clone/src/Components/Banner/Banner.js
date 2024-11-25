@@ -1,16 +1,23 @@
+// ! imports necessary dependencies, including React, axios, requests, and a CSS file banner.css.
+
 import React, { useEffect, useState } from "react";
-import axios from "../../utils/axios";
-import requests from "../../utils/requests";
+import axios from "../../utils/axios"; // used for making HTTP requests
+import requests from "../../utils/requests";// contains various API endpoint configurations
 import "./banner.css";
 
+// uses the useState and useEffect hooks to manage the state and handle side effects.
+// defines the Banner component as a functional component
 const Banner = () => {
+  // initializes the movie state variable using the useState hook
   const [movie, setMovie] = useState({});
-  useEffect(() => {
+  
+  useEffect(() => { //  fetch the Netflix Originals data from the API
     (async () => {
       try {
+        // define a variable request to hold the pic fetched 
         const request = await axios.get(requests.fetchNetflixOriginals);
-        // console.log(request)
-        setMovie(
+        // This set the movie pic randomly
+        setMovie( 
           request.data.results[
             Math.floor(Math.random() * request.data.results.length)
           ]
